@@ -27,15 +27,11 @@ sudo apt install zlib1g-dev
 
 # To install *apache arrow* (linux ubuntu)
 ```bash
-sudo apt update
-sudo apt install -y -V ca-certificates lsb-release wget
-
-wget https://packages.apache.org/artifactory/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb
-
-sudo apt install -y -V ./apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb
-
-sudo apt update
-sudo apt install -y -V libarrow-dev
+sudo apt install libarrow-dev libparquet-dev
+```
+# Extra libraries (linux ubuntu)
+```bash
+sudo apt install liblz4-dev libre2-dev libthrift-dev
 ```
 
 ## Running code

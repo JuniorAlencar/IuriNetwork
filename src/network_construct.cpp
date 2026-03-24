@@ -42,7 +42,7 @@ void Network::create_network() {
         throw std::runtime_error("For minimum degree m0, require num_vertices_m >= m0 + 1");
     
     int m_init = num_vertices_initial_m + 1;
-
+    int counter_alpha = 0;
     for (int i = m_init; i < num_vertices_m; ++i) {
         boost::add_vertex(G);
         vertex_t new_node = i;
@@ -50,7 +50,7 @@ void Network::create_network() {
         double random_number_method = rnd.uniform_real(0.0, 1.0);
         int random_number_node = rnd.uniform_int(0, i - 1);
         vertex_t select_node = static_cast<vertex_t>(random_number_node);
-
+        
         if (random_number_method < alpha_value_m) {
             std::vector<vertex_t> neighbors;
             neighbors.reserve(boost::degree(select_node, G));
@@ -65,12 +65,14 @@ void Network::create_network() {
                     boost::add_edge(new_node, j, G);
                 }
             }
+            counter_alpha += 1;
         } else {
             if (!boost::edge(new_node, select_node, G).second) {
                 boost::add_edge(new_node, select_node, G);
             }
         }
     }
+    std::cout << "Initial number of vertices: " << counter_alpha << '\n';
     std::cout << "Initial number of vertices: " << boost::num_vertices(G) << '\n';
     std::cout << "Initial number of edges: " << boost::num_edges(G) << '\n';
 }
