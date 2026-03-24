@@ -48,7 +48,9 @@ int main(int argc, char* argv[]){
     if (seed < 0) {
         seed = hrand::generate_random_seed();
     }
-    //hrand rng(seed);
+    hrand rng(seed);
+    Network net(num_vertices, alpha_value, seed, num_vertices_initial);
+    net.create_network();
     
     double beta = 1.0 - alpha_value;
 
@@ -58,6 +60,7 @@ int main(int argc, char* argv[]){
     cout << num_vertices_initial << endl;
     cout << beta << endl;
     cout << data_path << endl;
+    
     //int num_steps = 100;
     cout << seed << endl;
 

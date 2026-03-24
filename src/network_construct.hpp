@@ -40,11 +40,14 @@ class Network{
         //double beta_value; // beta parameter
         int seed_used_m;   // seed used
         int num_vertices_initial_m; // number of initial nodes (m)
+        
     public:
-        void create_network(const int num_vertices_m, const double alpha_value_m, 
-                            const int seed_used_m,  const int num_vertices_initial_m);
-        string method_used(const double random_value);
-        vector<vertex_t> get_neighbors(const graph_t& G, vertex_t v);
+        Network(int num_vertices_m, double alpha_value_m,
+            int seed_used_m, int num_vertices_initial_m);
+        
+        void create_network();
+        void make_initial_complete_graph();
+        const graph_t& get_graph() const { return G; }
 };
 
 #endif // !network_construct_hpp
